@@ -52,10 +52,22 @@ function googleAnalyticsMiddleware(data) {
     }
 }
 
+function iframe(data) {
+    data.headers['X-Frame-Options'] = "KOMEGA"    
+}
+
+function requireHTTPS(data) {
+    if (data.headers['x-forwarded-proto'] == "http") {
+        return data.redirect('https://ushistoryonline.herokuapp.com' + data.url)
+    }
+}
+
 var unblockerConfig = {
-    prefix: '/proxy/',
+    prefix: '/cdnID/',
     responseMiddleware: [
-        googleAnalyticsMiddleware
+        googleAnalyticsMiddleware,
+        iframe,
+        requireHTTPS
     ]
 };
 
