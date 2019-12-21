@@ -206,7 +206,7 @@ function Unblocker(config) {
     // returns the http://site.com/proxy
     function thisSite(request) {
         // todo: return https when appropriate
-        return request.protocol + '://' + thisHost(request) + config.prefix;
+        return 'https://' + thisHost(request) + config.prefix;
     }
 
     function redirectTo(request, response, site, headers) {
