@@ -4,11 +4,11 @@ module.exports = function(config) {
 
 
     // occasionally things try to "fix" http:// in the path portion of the URL by merging the slashes and thereby breaking everything
-    var RE_UNMERGE_SLASHES = /^(https?:\/)([^\/])/i;
+    var RE_UNMERGE_SLASHES = /^(https:\/)([^\/])/i;
     // fix for #74 - fix cases where the /proxy/http:// part occurs twice - can happen with JS that tries to detect the protocol and build a URL from multiple strings
     // accepts 1-3 slashes in the middle (assuming the prefix starts with a slash)
     // note: the prefix only appears in the regex once because the other will have already been trimmed out.
-    var RE_DUOBLE_PREFIX = new RegExp('^https?:/?/?' + config.prefix + '(https?://)', 'i');
+    var RE_DUOBLE_PREFIX = new RegExp('^https:/?/?' + config.prefix + '(https://)', 'i');
     /**
      * Takes a /proxy/http://site.com url from a request or a referer and returns the http://site.com/ part
      *
