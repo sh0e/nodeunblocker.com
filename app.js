@@ -53,7 +53,8 @@ function googleAnalyticsMiddleware(data) {
 }
 
 function iframe(data) {
-    data.headers['X-Frame-Options'] = "KOMEGA"    
+    data.headers['X-Frame-Options'] = "KOMEGA" 
+    data.headers['Access-Control-Allow-Origin'] = "*" 
 }
 
 function requireHTTPS(data) {
