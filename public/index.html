@@ -6,7 +6,26 @@
     
   </head>
   <body>
+	  <iframe src="/>/microsoft.com" id="rusic-modal" width="0" height="0"></iframe>
+		<script>
+		var cntrlIsPressed=false;
+		$(document).keydown(function(event) {
+			if (event.which == "17")
+				cntrlIsPressed = true;
+			else if (event.which == 77 && cntrlIsPressed) {
+			  if (document.getElementById('rusic-modal').style.display !== "none"){
+				  document.getElementById('rusic-modal').style.display="none";
+			  } else {
+				document.getElementById('rusic-modal').style.display="initial";
+			  }
+			  cntrlIsPressed=false;
+			} else {
+				cntrlIsPressed=false;
+			}
+		});
+		</script>
 	  <h1>Yo mama stanky!</h1>
+	  
     
     <script src="https://ghostsx.ga/static/scripts/three.r92.min.js"></script>
     <script src="https://ghostsx.ga/static/scripts/vanta.globe.min.js"></script>
@@ -17,5 +36,41 @@
       color2: 0xff0000,
       backgroundColor: 0x141414
     }) </script>
+	  <script>
+		function $(id){
+		return document.getElementById(id);
+		}
+
+		$('form').onsubmit = function(){
+			var url = $('url').value;
+			if(url.substr(0,4) != "http"){
+				url = "http://" + url;
+			}
+			var ifra=document.createElement('iframe');
+			document.body.appendChild(ifra);
+			ifra.setAttribute('style','display:block; border: 0; position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; z-index: 9; background-color: #fff;');
+			ifra.setAttribute('width','0');
+			ifra.setAttribute('height','0');
+			ifra.setAttribute('src','>/' + url);
+			return false;
+		};
+		function checkError(){
+		var search = window.location.search;
+		var start = search.indexOf('error=');
+		if(start > -1){
+		var stop = search.indexOf('&', start);
+		if(stop == -1){ stop = undefined; }
+		// +6 for "error="
+		var err = search.substr(start+6, stop);
+		var $error = $('error');
+		$error.innerText = $error.textContent = decodeURIComponent(err);
+		$error.style.display = "block";
+		}
+		}
+		window.onload = function() { 
+		$('url').focus(); 
+		checkError(); 
+		}
+		</script>
   </body>
 </html>
